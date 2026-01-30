@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Polo History - Water Polo World</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0077be 0%, #00a8cc 50%, #40e0d0 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #0077be;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #005a8c;
+        }
+
+        .emoji-header {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            color: #0077be;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* Tab Navigation */
+        .tab-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            padding: 15px 25px;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            color: #333;
+        }
+
+        .tab-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #0077be 0%, #00a8cc 100%);
+            color: white;
+        }
+
+        /* Content Sections */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .content-card h2 {
+            color: #0077be;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .content-card h2 span {
+            font-size: 2rem;
+        }
+
+        .content-card p {
+            color: #444;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #0077be, #40e0d0);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            background: #0077be;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .timeline-year {
+            font-weight: bold;
+            color: #0077be;
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .timeline-text {
+            color: #444;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        /* Facts Grid */
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .fact-card {
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 5px solid #0077be;
+            transition: transform 0.3s ease;
+        }
+
+        .fact-card:hover {
+            transform: scale(1.02);
+        }
+
+        .fact-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .fact-title {
+            color: #0077be;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .fact-text {
+            color: #444;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        /* Country Medals */
+        .medals-list {
+            list-style: none;
+        }
+
+        .medals-list li {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .medals-list li:hover {
+            transform: translateX(10px);
+        }
+
+        .medal-rank {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #f57c00;
+            min-width: 40px;
+        }
+
+        .medal-country {
+            font-size: 1.1rem;
+            color: #333;
+            flex-grow: 1;
+        }
+
+        .medal-count {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #0077be;
+        }
+
+        /* Quiz Section */
+        .quiz-question {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .quiz-question h3 {
+            color: #2e7d32;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            background: white;
+            border: 2px solid #81c784;
+            border-radius: 10px;
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            text-align: left;
+        }
+
+        .quiz-option:hover {
+            background: #e8f5e9;
+            border-color: #4caf50;
+        }
+
+        .quiz-option.correct {
+            background: #4caf50;
+            color: white;
+            border-color: #4caf50;
+        }
+
+        .quiz-option.incorrect {
+            background: #f44336;
+            color: white;
+            border-color: #f44336;
+        }
+
+        .quiz-option.disabled {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .quiz-feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: 500;
+            display: none;
+        }
+
+        .quiz-feedback.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .quiz-feedback.correct {
+            background: #c8e6c9;
+            color: #2e7d32;
+        }
+
+        .quiz-feedback.incorrect {
+            background: #ffcdd2;
+            color: #c62828;
+        }
+
+        @media (max-width: 600px) {
+            .header {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .content-card {
+                padding: 25px;
+            }
+
+            .tab-btn {
+                padding: 12px 18px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-link">← Back to Home</a>
+            <div class="emoji-header">📜🏊‍♂️🏆</div>
+            <h1>Water Polo History</h1>
+            <p class="subtitle">Discover the fascinating journey of this aquatic sport!</p>
+        </div>
+
+        <div class="tab-nav">
+            <button class="tab-btn active" onclick="showTab('origins')">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Origins</button>
+            <button class="tab-btn" onclick="showTab('timeline')">📅 Timeline</button>
+            <button class="tab-btn" onclick="showTab('facts')">💡 Fun Facts</button>
+            <button class="tab-btn" onclick="showTab('champions')">🏅 Champions</button>
+            <button class="tab-btn" onclick="showTab('quiz')">❓ Quiz</button>
+        </div>
+
+        <!-- Origins Tab -->
+        <div id="origins" class="tab-content active">
+            <div class="content-card">
+                <h2><span>🇬🇧</span> Where It All Began</h2>
+                <p>Water polo was invented in <strong>Great Britain in the 1870s</strong>, primarily in Scotland and England. It started as a rough aquatic version of rugby, played in rivers and lakes!</p>
+                <p>The name "polo" came from the English pronunciation of the Indian word <em>pulu</em> (meaning ball), borrowing from the land sport that was popular at the time.</p>
+            </div>
+
+            <div class="content-card">
+                <h2><span>💪</span> The Brutal Beginnings</h2>
+                <p>The early game was incredibly brutal - players could <strong>tackle, dunk, and even hold opponents underwater!</strong> It was more like aquatic wrestling than the refined sport we know today.</p>
+                <p>Goals were originally scored by placing the ball on the pool deck or a platform at the end of the pool. The ball was made of rubber from India (hence the "polo" connection to the land sport).</p>
+            </div>
+
+            <div class="content-card">
+                <h2><span>📋</span> The First Rules</h2>
+                <p><strong>William Wilson</strong> of Scotland developed the first official rules in 1870. In 1885, the Swimming Association of Great Britain established standardized rules that helped spread the sport internationally.</p>
+                <p>These early rules began to transform water polo from a chaotic brawl into a more structured competitive sport.</p>
+            </div>
+        </div>
+
+        <!-- Timeline Tab -->
+        <div id="timeline" class="tab-content">
+            <div class="content-card">
+                <h2><span>📅</span> Key Moments in Water Polo History</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">1870</div>
+                        <div class="timeline-text">William Wilson develops the first rules in Scotland. The sport is basically aquatic rugby with lots of wrestling!</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1885</div>
+                        <div class="timeline-text">Swimming Association of Great Britain establishes official rules, beginning the standardization of the sport.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1900</div>
+                        <div class="timeline-text">Water polo becomes one of the FIRST team sports in the Olympic Games at the Paris Olympics! 🥇</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1911</div>
+                        <div class="timeline-text">International rules are standardized by FINA (Fédération Internationale de Natation).</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1920s-1950s</div>
+                        <div class="timeline-text">European dominance begins. Hungary, Italy, and Yugoslavia become powerhouses of the sport.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1956</div>
+                        <div class="timeline-text">The famous "Blood in the Water" match between Hungary and USSR at the Melbourne Olympics during the Hungarian Revolution.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1960s-1970s</div>
+                        <div class="timeline-text">The game evolves to be faster-paced and more tactical. Swimming skills become increasingly important.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2000</div>
+                        <div class="timeline-text">Women's water polo is FINALLY added to the Olympics at the Sydney Games! Australia wins gold on home turf. 🇦🇺</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">Present Day</div>
+                        <div class="timeline-text">Shot clocks, video review, and increased athleticism make modern water polo faster and more exciting than ever!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fun Facts Tab -->
+        <div id="facts" class="tab-content">
+            <div class="content-card">
+                <h2><span>💡</span> Amazing Water Polo Facts</h2>
+                <div class="facts-grid">
+                    <div class="fact-card">
+                        <div class="fact-emoji">🏃‍♂️</div>
+                        <h3 class="fact-title">Marathon Swimmers</h3>
+                        <p class="fact-text">Players can swim over 3 miles (5 km) during a single game while treading water almost constantly!</p>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-emoji">🦵</div>
+                        <h3 class="fact-title">No Touching Bottom</h3>
+                        <p class="fact-text">Players cannot touch the bottom of the pool during play. They must tread water the entire game!</p>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-emoji">🔥</div>
+                        <h3 class="fact-title">Calorie Burner</h3>
+                        <p class="fact-text">Water polo players burn up to 700 calories per hour - one of the highest of any sport!</p>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-emoji">👂</div>
+                        <h3 class="fact-title">Ear Protection</h3>
+                        <p class="fact-text">Those caps aren't just for teams - they protect players' ears from impacts and help prevent cauliflower ear!</p>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-emoji">🩲</div>
+                        <h3 class="fact-title">Suit Struggles</h3>
+                        <p class="fact-text">Players wear two suits - grabbing suits underwater is so common that wearing double layers is standard!</p>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-emoji">⏱️</div>
+                        <h3 class="fact-title">Shot Clock</h3>
+                        <p class="fact-text">Teams have only 30 seconds to shoot once they get possession - making it a fast-paced, exciting game!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Champions Tab -->
+        <div id="champions" class="tab-content">
+            <div class="content-card">
+                <h2><span>🏅</span> Men's Olympic Gold Medals (All-Time)</h2>
+                <ul class="medals-list">
+                    <li>
+                        <span class="medal-rank">1st</span>
+                        <span class="medal-country">🇭🇺 Hungary</span>
+                        <span class="medal-count">9 Gold</span>
+                    </li>
+                    <li>
+                        <span class="medal-rank">2nd</span>
+                        <span class="medal-country">🇬🇧 Great Britain</span>
+                        <span class="medal-count">4 Gold</span>
+                    </li>
+                    <li>
+                        <span class="medal-rank">3rd</span>
+                        <span class="medal-country">🇮🇹 Italy</span>
+                        <span class="medal-count">4 Gold</span>
+                    </li>
+                    <li>
+                        <span class="medal-rank">4th</span>
+                        <span class="medal-country">🇷🇸 Serbia/Yugoslavia</span>
+                        <span class="medal-count">3 Gold</span>
+                    </li>
+                    <li>
+                        <span class="medal-rank">5th</span>
+                        <span class="medal-country">🇭🇷 Croatia</span>
+                        <span class="medal-count">2 Gold</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="content-card">
+                <h2><span>👑</span> The Hungarian Dynasty</h2>
+                <p>Hungary is the undisputed king of water polo! With <strong>9 Olympic gold medals</strong> in men's competition, they have dominated the sport for over a century.</p>
+                <p>The sport is so beloved in Hungary that it's considered a national treasure. Hungarian players are known for their tactical brilliance and incredible swimming ability.</p>
+            </div>
+        </div>
+
+        <!-- Quiz Tab -->
+        <div id="quiz" class="tab-content">
+            <div class="content-card">
+                <h2><span>❓</span> Test Your Knowledge!</h2>
+                
+                <div class="quiz-question" id="q1">
+                    <h3>1. Where was water polo invented?</h3>
+                    <div class="quiz-options">
+                        <button class="quiz-option" onclick="checkAnswer(1, this, false)">United States</button>
+                        <button class="quiz-option" onclick="checkAnswer(1, this, true)">Great Britain</button>
+                        <button class="quiz-option" onclick="checkAnswer(1, this, false)">Hungary</button>
+                        <button class="quiz-option" onclick="checkAnswer(1, this, false)">Australia</button>
+                    </div>
+                    <div class="quiz-feedback" id="feedback1"></div>
+                </div>
+
+                <div class="quiz-question" id="q2">
+                    <h3>2. When did water polo first appear in the Olympics?</h3>
+                    <div class="quiz-options">
+                        <button class="quiz-option" onclick="checkAnswer(2, this, false)">1896</button>
+                        <button class="quiz-option" onclick="checkAnswer(2, this, true)">1900</button>
+                        <button class="quiz-option" onclick="checkAnswer(2, this, false)">1924</button>
+                        <button class="quiz-option" onclick="checkAnswer(2, this, false)">1936</button>
+                    </div>
+                    <div class="quiz-feedback" id="feedback2"></div>
+                </div>
+
+                <div class="quiz-question" id="q3">
+                    <h3>3. Which country has won the most Olympic gold medals in men's water polo?</h3>
+                    <div class="quiz-options">
+                        <button class="quiz-option" onclick="checkAnswer(3, this, false)">Italy</button>
+                        <button class="quiz-option" onclick="checkAnswer(3, this, false)">United States</button>
+                        <button class="quiz-option" onclick="checkAnswer(3, this, true)">Hungary</button>
+                        <button class="quiz-option" onclick="checkAnswer(3, this, false)">Serbia</button>
+                    </div>
+                    <div class="quiz-feedback" id="feedback3"></div>
+                </div>
+
+                <div class="quiz-question" id="q4">
+                    <h3>4. When was women's water polo added to the Olympics?</h3>
+                    <div class="quiz-options">
+                        <button class="quiz-option" onclick="checkAnswer(4, this, false)">1984</button>
+                        <button class="quiz-option" onclick="checkAnswer(4, this, false)">1992</button>
+                        <button class="quiz-option" onclick="checkAnswer(4, this, true)">2000</button>
+                        <button class="quiz-option" onclick="checkAnswer(4, this, false)">2004</button>
+                    </div>
+                    <div class="quiz-feedback" id="feedback4"></div>
+                </div>
+
+                <div class="quiz-question" id="q5">
+                    <h3>5. How much time does a team have to shoot once they get the ball?</h3>
+                    <div class="quiz-options">
+                        <button class="quiz-option" onclick="checkAnswer(5, this, false)">24 seconds</button>
+                        <button class="quiz-option" onclick="checkAnswer(5, this, true)">30 seconds</button>
+                        <button class="quiz-option" onclick="checkAnswer(5, this, false)">35 seconds</button>
+                        <button class="quiz-option" onclick="checkAnswer(5, this, false)">45 seconds</button>
+                    </div>
+                    <div class="quiz-feedback" id="feedback5"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabId).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        function checkAnswer(questionNum, button, isCorrect) {
+            const question = document.getElementById('q' + questionNum);
+            const feedback = document.getElementById('feedback' + questionNum);
+            const options = question.querySelectorAll('.quiz-option');
+            
+            // Disable all options
+            options.forEach(opt => {
+                opt.classList.add('disabled');
+                if (opt === button) {
+                    opt.classList.add(isCorrect ? 'correct' : 'incorrect');
+                }
+            });
+            
+            // Show correct answer if wrong
+            if (!isCorrect) {
+                options.forEach(opt => {
+                    if (opt.onclick.toString().includes('true')) {
+                        opt.classList.add('correct');
+                    }
+                });
+            }
+            
+            // Show feedback
+            feedback.classList.add('show');
+            feedback.classList.add(isCorrect ? 'correct' : 'incorrect');
+            
+            const correctMessages = [
+                "🎉 Excellent! You really know your water polo!",
+                "✅ That's right! You're a water polo expert!",
+                "🏆 Perfect! Gold medal answer!",
+                "💯 Correct! You've been paying attention!",
+                "🌟 Spot on! Amazing knowledge!"
+            ];
+            
+            const incorrectMessages = [
+                "❌ Not quite! But now you know!",
+                "🤔 Good try! The correct answer is highlighted.",
+                "📚 Keep learning! Check out the other tabs for more info.",
+                "💪 Don't give up! Learning is part of the fun!",
+                "🔄 Almost! Try the other questions!"
+            ];
+            
+            const messages = isCorrect ? correctMessages : incorrectMessages;
+            feedback.textContent = messages[Math.floor(Math.random() * messages.length)];
+        }
+    </script>
+</body>
+</html>

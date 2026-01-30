@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Polo Jokes - Water Polo World</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0077be 0%, #00a8cc 50%, #40e0d0 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #0077be;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #005a8c;
+        }
+
+        h1 {
+            color: #0077be;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .emoji-header {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .pun-display {
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #0077be;
+        }
+
+        .pun-text {
+            font-size: 1.3rem;
+            color: #333;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .pun-text.placeholder {
+            color: #888;
+            font-style: normal;
+        }
+
+        .get-pun-btn {
+            background: linear-gradient(135deg, #0077be 0%, #00a8cc 100%);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 1.3rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 119, 190, 0.4);
+            margin-bottom: 25px;
+        }
+
+        .get-pun-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 119, 190, 0.5);
+        }
+
+        .get-pun-btn:active {
+            transform: translateY(0);
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 15px;
+            background: #fff3e0;
+            border-radius: 10px;
+            border: 2px dashed #ff9800;
+        }
+
+        .checkbox-container input[type="checkbox"] {
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+            accent-color: #ff5722;
+        }
+
+        .checkbox-container label {
+            font-size: 1rem;
+            color: #e65100;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .warning-emoji {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .pun-text {
+                font-size: 1.1rem;
+            }
+
+            .get-pun-btn {
+                padding: 15px 35px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Home</a>
+        <div class="emoji-header">🤽‍♂️💦🏊‍♀️</div>
+        <h1>Water Polo Puns</h1>
+        <p class="subtitle">Dive into some splashing humor!</p>
+        
+        <div class="pun-display">
+            <p class="pun-text placeholder" id="punText">Press the button to get a pun!</p>
+        </div>
+        
+        <button class="get-pun-btn" onclick="getPun()">
+            Make a Splash! 💦
+        </button>
+        
+        <div class="checkbox-container">
+            <span class="warning-emoji">🔞</span>
+            <input type="checkbox" id="dirtyJokes">
+            <label for="dirtyJokes">Include dirty jokes</label>
+            <span class="warning-emoji">🌶️</span>
+        </div>
+    </div>
+
+    <script>
+        const cleanPuns = [
+            "Why did the water polo player bring a towel to the game? Because they wanted to make a clean sweep!",
+            "What do you call a water polo player who can't swim? A floater!",
+            "Why are water polo players so good at math? They're always working on their pool-ynomials!",
+            "What's a water polo goalie's favorite type of music? Heavy splash metal!",
+            "Why did the water polo ball go to therapy? It had too many issues with being passed around!",
+            "How do water polo players stay cool? They have a lot of fans in the pool!",
+            "What do you call a lazy water polo player? A dead fish!",
+            "Why don't water polo players ever get lost? They always follow the current events!",
+            "What's the difference between a water polo player and a fish? One swims around chasing balls, the other is a fish!",
+            "Why did the water polo team go to the bank? To check their pool of resources!",
+            "What do water polo players eat for breakfast? Pool-atine and eggs!",
+            "Why was the water polo player a great comedian? Their timing was always on point!",
+            "What do you call a water polo game with no fouls? A fairy tale!",
+            "Why did the referee bring sunscreen to the water polo match? To avoid getting burned by bad calls!",
+            "How do water polo players communicate underwater? They use pool-se code!",
+            "What's a water polo player's favorite movie? The Little Mermaid - they relate to the swimming!",
+            "Why are water polo goals so humble? They're always getting scored on and staying net-positive!",
+            "What do you call a water polo player in winter? Absolutely freezing and questioning their life choices!",
+            "Why did the water polo captain make a great leader? They really knew how to make waves!",
+            "What's a water polo player's least favorite chore? Cleaning - they get enough of the pool already!"
+        ];
+
+        const dirtyPuns = [
+            "Why do water polo players make great lovers? They have incredible stamina and don't mind getting wet!",
+            "What's the difference between water polo and a hot tub party? One has a ball, the other... well, maybe both do!",
+            "Why do water polo players have great hands? Let's just say they get a LOT of ball handling practice!",
+            "What did the water polo player say on their date? 'I'm really good at scoring in tight spaces!'",
+            "Why are water polo players always confident? They're used to performing while barely wearing anything!",
+            "What's a water polo player's pickup line? 'Want to see my treading technique? I can go all night!'",
+            "Why did the water polo player get kicked out of the bar? They kept dunking people without consent!",
+            "What do water polo players and rabbits have in common? They both know how to kick hard in the water... wait, that's not dirty enough. They're both wet and wild!",
+            "Why are water polo caps so tight? To keep all those dirty thoughts from floating away!",
+            "What happens when two water polo teams really hate each other? Things get wet and dirty under the surface!"
+        ];
+
+        let lastPunIndex = -1;
+        let lastWasDirty = false;
+
+        function getPun() {
+            const includeDirty = document.getElementById('dirtyJokes').checked;
+            const punTextElement = document.getElementById('punText');
+            
+            let availablePuns = [...cleanPuns];
+            if (includeDirty) {
+                availablePuns = [...cleanPuns, ...dirtyPuns];
+            }
+            
+            // Avoid repeating the same pun twice in a row
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * availablePuns.length);
+            } while (randomIndex === lastPunIndex && availablePuns.length > 1);
+            
+            lastPunIndex = randomIndex;
+            
+            punTextElement.textContent = availablePuns[randomIndex];
+            punTextElement.classList.remove('placeholder');
+            
+            // Add a little animation
+            punTextElement.style.opacity = '0';
+            setTimeout(() => {
+                punTextElement.style.transition = 'opacity 0.3s ease';
+                punTextElement.style.opacity = '1';
+            }, 50);
+        }
+    </script>
+</body>
+</html>
